@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador Agro Sustentável - Agrinho 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f9f4; color: #2c3e50; padding: 20px; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 0 auto; }
+        button { background-color: #27ae60; color: white; border: none; padding: 10px 20px; margin: 10px 0; border-radius: 5px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #219150; }
+        .status { font-weight: bold; margin-bottom: 20px; display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Simulador Colheita Sustentável</h2>
+    <div class="status">
+        <span id="prodDisplay">Produtividade: 100%</span>
+        <span id="sustDisplay">Sustentabilidade: 100%</span>
+    </div>
+
+    <div id="cenario">
+        <p><strong>Cenário 1:</strong> Pragas apareceram na sua plantação de soja! O que você faz?</p>
+        <button onclick="escolha(15, -25, 'Você usou defensivos químicos pesados. A praga sumiu, mas o solo e a água foram prejudicados.')">Opção A: Pulverizar agroquímicos em excesso</button>
+        <button onclick="escolha(10, 20, 'Boa! Você usou inimigos naturais da praga. A produção foi boa e a biodiversidade agradece.')">Opção B: Usar Controle Biológico (Manejo Integrado)</button>
+    </div>
+    
+    <p id="resultadoText" style="margin-top:20px; font-style: italic; color: #555;"></p>
+</div>
+
+<script>
+    let produtividade = 100;
+    let sustentabilidade = 100;
+
+    function escolha(modProd, modSust, mensagem) {
+        // Atualiza os pontos
+        produtividade += modProd;
+        sustentabilidade += modSust;
+
+        // Limita o máximo em 100% e mínimo em 0%
+        produtiveness = Math.max(0, Math.min(100, produtividade));
+        sustentabilidade = Math.max(0, Math.min(100, sustentabilidade));
+
+        // Atualiza a tela
+        document.getElementById('prodDisplay').innerText = "Produtividade: " + produtividade + "%";
+        document.getElementById('sustDisplay').innerText = "Sustentabilidade: " + sustentabilidade + "%";
+        document.getElementById('resultadoText').innerText = mensagem;
+
+        // Aqui você pode avançar para o próximo cenário...
+    }
+</script>
+
+</body>
+</html>
