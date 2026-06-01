@@ -9,46 +9,47 @@
         button { background-color: #27ae60; color: white; border: none; padding: 10px 20px; margin: 10px 0; border-radius: 5px; cursor: pointer; width: 100%; }
         button:hover { background-color: #219150; }
         .status { font-weight: bold; margin-bottom: 20px; display: flex; justify-content: space-between; }
+        .footer { margin-top: 20px; font-size: 14px; text-align: center; color: #555; }
+        .repo-link { display: inline-block; background-color: #2980b9; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; }
+        .repo-link:hover { background-color: #2475a3; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>Simulador Colheita Sustentável</h2>
-    <div class="status">
-        <span id="prodDisplay">Produtividade: 100%</span>
-        <span id="sustDisplay">Sustentabilidade: 100%</span>
+<div class="container" style="margin-top:20px; max-width:720px;">
+    <h2>Modo RPG: Fazenda</h2>
+    <p>Controle seu personagem com as setas. Pressione <strong>P</strong> para plantar na posição atual. A <em>colheitadeira</em> (NPC) irá automaticamente colher alimentos maduros.</p>
+
+    <div id="rpgSection" style="display:block; margin-top:12px;">
+        <canvas id="rpgCanvas" width="720" height="360" style="border:1px solid #ccc; background:#e9f7ef;"></canvas>
+        <div id="rpgControls" style="margin-top:8px; display:flex; gap:12px; align-items:center;">
+            <div>Alimentos colhidos: <span id="foodCount">0</span></div>
+            <div>
+                <label>Selecionar cultura:
+                    <select id="rpgCropSelect">
+                    </select>
+                </label>
+            </div>
+            <div>
+                <button onclick="actionWater()">Regar</button>
+                <button onclick="actionFertilize()">Fertilizante</button>
+                <button onclick="actionSpray()">Pulverizar</button>
+                <button onclick="actionHarvest()">Colher (H)</button>
+            </div>
+            <div><button onclick="stopRPG()">Fechar RPG</button></div>
+        </div>
+        <div id="rpgInfo" style="margin-top:8px; font-size:14px; color:#333">Clique no canvas e use setas para mover. P: plantar | H: colher manual | Use botões para ações.</div>
     </div>
 
-    <div id="cenario">
-        <p><strong>Cenário 1:</strong> Pragas apareceram na sua plantação de soja! O que você faz?</p>
-        <button onclick="escolha(15, -25, 'Você usou defensivos químicos pesados. A praga sumiu, mas o solo e a água foram prejudicados.')">Opção A: Pulverizar agroquímicos em excesso</button>
-        <button onclick="escolha(10, 20, 'Boa! Você usou inimigos naturais da praga. A produção foi boa e a biodiversidade agradece.')">Opção B: Usar Controle Biológico (Manejo Integrado)</button>
+    <div class="footer" style="margin-top:12px;">
+        <p>Projeto por <strong>maria eduarda</strong> — <a href="https://github.com/mariamarchinimota-glitch/Agrinho-2026" target="_blank" rel="noopener" class="repo-link">Ver repositório</a></p>
     </div>
-    
-    <p id="resultadoText" style="margin-top:20px; font-style: italic; color: #555;"></p>
 </div>
 
+<script src="script.js"></script>
 <script>
-    let produtividade = 100;
-    let sustentabilidade = 100;
-
-    function escolha(modProd, modSust, mensagem) {
-        // Atualiza os pontos
-        produtividade += modProd;
-        sustentabilidade += modSust;
-
-        // Limita o máximo em 100% e mínimo em 0%
-        produtiveness = Math.max(0, Math.min(100, produtividade));
-        sustentabilidade = Math.max(0, Math.min(100, sustentabilidade));
-
-        // Atualiza a tela
-        document.getElementById('prodDisplay').innerText = "Produtividade: " + produtividade + "%";
-        document.getElementById('sustDisplay').innerText = "Sustentabilidade: " + sustentabilidade + "%";
-        document.getElementById('resultadoText').innerText = mensagem;
-
-        // Aqui você pode avançar para o próximo cenário...
-    }
+    // Inicia o RPG automaticamente quando a página carrega
+    window.addEventListener('load', function() { if (window.initRPG) initRPG(); });
 </script>
 
 </body>

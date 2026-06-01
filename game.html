@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Império Agrícola Brasil - Protótipo</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <header>
+    <h1>Império Agrícola Brasil (Protótipo)</h1>
+    <div id="topStats">
+      <span id="money">R$ 1.000</span>
+      <span id="day">Dia 1</span>
+      <span id="season">Estação: Verão</span>
+      <span id="weather">Tempo: Ensolarado</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="left">
+      <h2>Mapa da Fazenda</h2>
+      <div id="grid"></div>
+      <div class="controls">
+        <label>Selecionar cultura:
+          <select id="cropSelect"></select>
+        </label>
+        <button id="plantBtn">Plantar</button>
+        <button id="harvestBtn">Colher</button>
+        <button id="nextDay">Avançar 1 dia</button>
+      </div>
+    </section>
+
+    <aside class="right">
+      <h2>Informações</h2>
+      <div id="info">Clique em um lote para ver detalhes.</div>
+      <h3>Mercado</h3>
+      <div id="market"></div>
+      <h3>Máquinas</h3>
+      <div id="machines"></div>
+      <h3>Pecuária</h3>
+      <div id="animals"></div>
+    </aside>
+  </main>
+
+  <footer>
+    Protótipo rápido — recursos avançados planejados: pesquisa, indústrias e multiplayer.
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
